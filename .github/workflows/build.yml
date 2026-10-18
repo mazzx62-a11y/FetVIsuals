@@ -14,11 +14,11 @@ permissions:
 
 jobs:
   build:
-    name: Build Minecraft 1.21.4 Client
+    name: Build FetVisuals 1.21.4
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Java 21
@@ -26,13 +26,17 @@ jobs:
         with:
           distribution: temurin
           java-version: "21"
-          cache: gradle
 
-      - name: Make Gradle executable
-        run: chmod +x ./gradlew
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.10.2"
 
-      - name: Build
-        run: ./gradlew build --no-daemon
+      - name: Check Gradle
+        run: gradle --version
+
+      - name: Build FetVisuals
+        run: gradle build --no-daemon
 
       - name: Upload JAR
         uses: actions/upload-artifact@v4
