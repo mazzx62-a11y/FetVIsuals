@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - "**"
+
   pull_request:
     branches:
       - "**"
+
   workflow_dispatch:
 
 permissions:
@@ -18,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Java 21
@@ -32,11 +34,8 @@ jobs:
         with:
           gradle-version: "8.10.2"
 
-      - name: Check Gradle
-        run: gradle --version
-
       - name: Build FetVisuals
-        run: gradle build --no-daemon
+        run: gradle build --no-daemon --refresh-dependencies
 
       - name: Upload JAR
         uses: actions/upload-artifact@v4
