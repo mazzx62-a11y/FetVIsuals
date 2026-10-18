@@ -1,3 +1,4 @@
+```yaml
 name: Build FetVisuals
 
 on:
@@ -32,7 +33,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: "8.10.2"
+          gradle-version: "8.11.1"
 
       - name: Build FetVisuals
         run: gradle build --no-daemon --refresh-dependencies
@@ -44,3 +45,4 @@ jobs:
           path: build/libs/*.jar
           if-no-files-found: error
           retention-days: 14
+```
