@@ -1,15 +1,11 @@
-```yaml
+
 name: Build FetVisuals
 
 on:
   push:
-    branches:
-      - "**"
-
+    branches: ["**"]
   pull_request:
-    branches:
-      - "**"
-
+    branches: ["**"]
   workflow_dispatch:
 
 permissions:
@@ -19,7 +15,6 @@ jobs:
   build:
     name: Build FetVisuals 1.21.4
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -45,4 +40,3 @@ jobs:
           path: build/libs/*.jar
           if-no-files-found: error
           retention-days: 14
-```
